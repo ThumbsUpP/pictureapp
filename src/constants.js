@@ -1,0 +1,6 @@
+export const FETCH_STATUS = {
+  FETCHED: 'FETCHED',
+  ERROR: 'ERROR',
+  FETCHING: 'FETCHING',
+  NOT_FETCHED: 'NOT_FETCHED',
+} ;
