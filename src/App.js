@@ -1,31 +1,22 @@
 import React from 'react';
+import { map } from 'lodash/fp';
 import './App.css';
-import { fetchPicture } from './redux/actions';
 
-class App extends React.Component {
-  componentDidMount() {
-    //fetchPicture();
-  }
-
-  render() {
-    return (
-      <div className='App'>
-        <header className='App-header'>
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className='App-link'
-            href='https://reactjs.org'
-            target='_blank'
-            rel='noopener noreferrer'
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
-}
+const App = ({ pictures }) => (
+  <div className='App'>
+    <header className='App-header'>
+      <p>
+        Edit <code>src/App.js</code> and save to reload.
+      </p>
+      <ul>
+        {map(({ img_src, id, earth_date }) => (
+          <li key={id}>
+            <img src={img_src} width={200} height={200} alt={earth_date} />
+          </li>
+        ))(pictures)}
+      </ul>
+    </header>
+  </div>
+);
 
 export default App;
