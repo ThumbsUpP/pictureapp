@@ -1,5 +1,6 @@
 import {
   ADD_PICTURES,
+  ADD_TO_FAVORITE,
   INCREMENT_FETCH_COUNT,
   SET_FETCH_STATUS,
 } from './reducer';
@@ -13,6 +14,11 @@ const setFetchStatus = status => ({ type: SET_FETCH_STATUS, status });
 const addPictures = pictures => ({
   type: ADD_PICTURES,
   pictures,
+});
+
+export const addToFavorite = id => ({
+  type: ADD_TO_FAVORITE,
+  id,
 });
 
 const incrementFetchCount = () => ({
