@@ -25,7 +25,7 @@ const reducer = (state = initialState, action) => {
     case ADD_PICTURES:
       return {
         ...state,
-        pictures: [...state.pictures, ...action.pictures],
+        pictures: [...action.pictures, ...state.pictures],
       };
     case ADD_TO_FAVORITE:
       return {

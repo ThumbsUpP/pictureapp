@@ -29,9 +29,9 @@ export const fetchPicture = () => {
   return (dispatch, getState) => {
     dispatch(setFetchStatus(FETCHING));
     const state = getState();
-    const { fetchCount } = state.fetchStatus;
+    const { fetchCount } = state;
     axios
-      .get(`${API_HOST}${fetchCount}&api_key=DEMO_KEY`)
+      .get(`${API_HOST}&sol=${fetchCount}&api_key=DEMO_KEY`)
       .then(({ data }) => {
         dispatch(addPictures(data.photos));
         dispatch(incrementFetchCount());
