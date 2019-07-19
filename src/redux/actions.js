@@ -3,6 +3,7 @@ import {
   ADD_TO_FAVORITE,
   INCREMENT_FETCH_COUNT,
   SET_FETCH_STATUS,
+  TOGGLE_IS_FETCHING_DATA,
 } from './reducer';
 import { API_HOST, FETCH_STATUS } from '../constants';
 import axios from 'axios';
@@ -16,6 +17,10 @@ const addPictures = pictures => ({
   pictures,
 });
 
+export const toggleIsFetchingData = () => ({
+  type: TOGGLE_IS_FETCHING_DATA,
+});
+
 export const addToFavorite = id => ({
   type: ADD_TO_FAVORITE,
   id,
@@ -27,16 +32,18 @@ const incrementFetchCount = () => ({
 
 export const fetchPicture = () => {
   return (dispatch, getState) => {
-    dispatch(setFetchStatus(FETCHING));
     const state = getState();
-    const { fetchCount } = state;
-    axios
-      .get(`${API_HOST}&sol=${fetchCount}&api_key=DEMO_KEY`)
-      .then(({ data }) => {
-        dispatch(addPictures(data.photos));
-        dispatch(incrementFetchCount());
-        dispatch(setFetchStatus(FETCHED));
-      })
-      .catch(() => dispatch(setFetchStatus(FETCH_ERROR)));
+    const { fetchCount, isFetchingData } = state;
+    if (isFetchingData) {
+      dispatch(setFetchStatus(FETCHING));
+      axios
+        .get(`${API_HOST}&sol=${fetchCount}&api_key=DEMO_KEY`)
+        .then(({ data }) => {
+          dispatch(addPictures(data.photos));
+          dispatch(incrementFetchCount());
+          dispatch(setFetchStatus(FETCHED));
+        })
+        .catch(() => dispatch(setFetchStatus(FETCH_ERROR)));
+    }
   };
 };

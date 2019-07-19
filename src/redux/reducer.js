@@ -5,6 +5,7 @@ export const ADD_PICTURES = 'ADD_PICTURES';
 export const ADD_TO_FAVORITE = 'ADD_TO_FAVORITE';
 export const SET_FETCH_STATUS = 'SET_FETCH_STATUS';
 export const INCREMENT_FETCH_COUNT = 'INCREMENT_FETCH_COUNT';
+export const TOGGLE_IS_FETCHING_DATA = 'TOGGLE_IS_FETCHING_DATA';
 
 const { NOT_FETCHED } = FETCH_STATUS;
 
@@ -13,6 +14,7 @@ const initialState = {
   favorites: [],
   fetchStatus: NOT_FETCHED,
   fetchCount: 0,
+  isFetchingData: true,
 };
 
 const reducer = (state = initialState, action) => {
@@ -41,6 +43,12 @@ const reducer = (state = initialState, action) => {
         ...state,
         fetchCount: state.fetchCount + 1,
       };
+    case TOGGLE_IS_FETCHING_DATA:
+      return {
+        ...state,
+        isFetchingData: !state.isFetchingData,
+      };
+
     default:
       return state;
   }
