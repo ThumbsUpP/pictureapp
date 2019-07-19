@@ -1,5 +1,7 @@
 import { FETCH_STATUS } from '../constants';
 import { filter } from 'lodash/fp';
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
 export const ADD_PICTURES = 'ADD_PICTURES';
 export const ADD_TO_FAVORITE = 'ADD_TO_FAVORITE';
@@ -54,4 +56,16 @@ const reducer = (state = initialState, action) => {
   }
 };
 
-export default reducer;
+const persistConfig = {
+  key: 'root',
+  storage: storage,
+  blacklist: [
+    'pictures',
+    'fetchStatus',
+    'fetchStatus',
+    'fetchCount',
+    'isFetchingData',
+  ],
+};
+
+export default persistReducer(persistConfig, reducer);
