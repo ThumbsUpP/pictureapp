@@ -4,7 +4,7 @@ import './Container.css';
 import Header from './Header.container';
 
 const Main = ({ pictures, addToFavorite }) => (
-  <div className='container'>
+  <div className='container main'>
     <Header />
     <div className='main-container-list'>
       {map(({ img_src, id, earth_date }) => (

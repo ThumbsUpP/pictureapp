@@ -17,7 +17,7 @@ export default compose(
       fetchPicture();
       setInterval(() => {
         fetchPicture();
-      }, 10000);
+      }, 5000);
     },
   }),
 )(Main);

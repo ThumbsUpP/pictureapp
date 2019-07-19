@@ -2,7 +2,14 @@
     display: flex;
     color: white;
     flex-direction: column;
-    width: 100%;
+    width: 97%;
+    border: 1px solid darkslategrey;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.main {
+    min-height: 100vh;
 }
 
 .main-container-list {
@@ -15,7 +22,7 @@
 .favorite-container-list {
     display: flex;
     flex-wrap: wrap;
-    padding: 20px;
+    padding: 0 20px 20px 20px;
     justify-content: center;
 }
 
